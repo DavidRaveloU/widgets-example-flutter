@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'widgets/accordion_container.dart';
+import 'widgets/draggable_star_rating.dart';
 import 'widgets/otp_verfication.dart';
 
 void main(List<String> args) {
@@ -28,7 +29,9 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
           child: Column(
         children: [
-          OTPVerfication(borderRadius: 12, numberContainer: 4),
+          DraggableStarRating(),
+          SizedBox(height: 20),
+          OTPVerfication(borderRadius: 12, numberContainer: 6),
           SizedBox(height: 20),
           AccordionContainer(
               maxHeight: 300,
