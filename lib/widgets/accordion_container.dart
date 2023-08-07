@@ -28,7 +28,7 @@ class AccordionContainer extends StatefulWidget {
 
 class AaccordionStateContainer extends State<AccordionContainer> {
   bool _expand = true;
-  double _sizeContainer = 60;
+  late double _sizeContainer = 60;
 
   void _toggleExpand() {
     setState(() {
@@ -88,39 +88,44 @@ class AaccordionStateContainer extends State<AccordionContainer> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: _toggleExpand,
-      child: AnimatedContainer(
-        height: _sizeContainer,
-        width: widget.width,
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.decelerate,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-        decoration: BoxDecoration(
-          color: _expand
-              ? widget.backgroundColorshrink
-              : widget.backgroundColorExpand,
-          borderRadius: BorderRadius.circular(4),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 6,
-              offset: const Offset(0, 0),
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                _buildNumberWidget(),
-                Visibility(visible: _expand, child: const SizedBox(width: 20)),
-                _buildTitleWidget(),
-                const Spacer(),
-                _buildExpandButton(),
-              ],
-            ),
-            _buildContent(),
-          ],
+      child: Expanded(
+        child: AnimatedContainer(
+          height: _sizeContainer,
+          width: widget.width,
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.decelerate,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          decoration: BoxDecoration(
+            color: _expand
+                ? widget.backgroundColorshrink
+                : widget.backgroundColorExpand,
+            borderRadius: BorderRadius.circular(4),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 2,
+                blurRadius: 6,
+                offset: const Offset(0, 0),
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  _buildNumberWidget(),
+                  Visibility(
+                      visible: _expand, child: const SizedBox(width: 20)),
+                  _buildTitleWidget(),
+                  const Spacer(),
+                  _buildExpandButton(),
+                ],
+              ),
+              _buildContent(),
+            ],
+          ),
         ),
       ),
     );
