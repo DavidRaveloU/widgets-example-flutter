@@ -12,14 +12,12 @@ class UnderlinedTextField extends StatefulWidget {
   final String? hintText;
   final FieldType fieldType;
   final Color? cursorColor;
-  final Color? dividerColor;
   final int maxLenght;
   const UnderlinedTextField({
     Key? key,
     this.hintText,
     required this.fieldType,
     this.cursorColor,
-    this.dividerColor,
     this.width,
     required this.maxLenght,
   }) : super(key: key);
@@ -29,6 +27,7 @@ class UnderlinedTextField extends StatefulWidget {
 }
 
 class _UnderlinedTextFieldState extends State<UnderlinedTextField> {
+  late Color colorDivider = Colors.grey;
   late TextEditingController textEditingController;
   late Text messageInf;
   late int status = 0;
@@ -63,9 +62,18 @@ class _UnderlinedTextFieldState extends State<UnderlinedTextField> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          buildTextField(),
+          Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(width: 1)),
+              width: widget.width ?? double.infinity,
+              child: buildTextField()),
           Divider(
-            color: widget.dividerColor ?? Colors.black,
+            color: status == 1
+                ? Colors.green
+                : status == 2
+                    ? Colors.red
+                    : Colors.grey,
             thickness: 2.5,
             height: 0,
           ),
@@ -118,6 +126,7 @@ class _UnderlinedTextFieldState extends State<UnderlinedTextField> {
             cursorColor: widget.cursorColor ?? Colors.black,
             keyboardType: keyboardType,
             decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 8),
               border: InputBorder.none,
               hintText: widget.hintText ?? '',
             ),
@@ -148,7 +157,10 @@ class _UnderlinedTextFieldState extends State<UnderlinedTextField> {
           obscureText = !obscureText;
         });
       },
-      icon: Icon(obscureText ? Icons.visibility : Icons.visibility_off),
+      icon: Icon(
+        obscureText ? Icons.visibility : Icons.visibility_off,
+        color: Colors.grey,
+      ),
     );
   }
 }

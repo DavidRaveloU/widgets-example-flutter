@@ -32,6 +32,7 @@ class HomePage extends StatelessWidget {
           child: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 20),
             DraggableStarRating(),
             SizedBox(height: 20),
             OTPVerfication(borderRadius: 12, numberContainer: 6),
