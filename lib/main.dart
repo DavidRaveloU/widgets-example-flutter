@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:widgets_example/widgets/toast_notification.dart';
 
 import 'widgets/accordion_container.dart';
 import 'widgets/draggable_star_rating.dart';
@@ -33,7 +34,11 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 20),
-            DraggableStarRating(),
+            ToastNotification(
+              message: 'Este es un texto',
+              notificationType: NotificationType.info,
+            )
+            /* DraggableStarRating(),
             SizedBox(height: 20),
             OTPVerfication(borderRadius: 12, numberContainer: 6),
             SizedBox(height: 20),
@@ -78,7 +83,7 @@ class HomePage extends StatelessWidget {
               fieldType: FieldType.number,
               maxLenght: 10,
               hintText: 'Number',
-            )
+            ) */
           ],
         ),
       )),
