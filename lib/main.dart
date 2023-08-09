@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:widgets_example/widgets/dropdown_select_menu.dart';
 import 'package:widgets_example/widgets/toast_notification.dart';
 
 import 'widgets/accordion_container.dart';
@@ -28,17 +29,40 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 20),
-            ToastNotification(
+            const SizedBox(height: 20),
+            DropdownSelectmenu(
+              options: [
+                OptionTap(
+                    icon: const Icon(
+                      Icons.facebook,
+                      color: Colors.lightBlue,
+                    ),
+                    text: 'Facebook',
+                    onTap: () {
+                      print('Option 1');
+                    }),
+                OptionTap(
+                    text: 'Option 2',
+                    onTap: () {
+                      print('Option 2');
+                    }),
+                OptionTap(
+                    text: 'Option 3',
+                    onTap: () {
+                      print('Option 3');
+                    }),
+              ],
+            ),
+            /*ToastNotification(
               message: 'Este es un texto',
               notificationType: NotificationType.info,
             )
-            /* DraggableStarRating(),
+             DraggableStarRating(),
             SizedBox(height: 20),
             OTPVerfication(borderRadius: 12, numberContainer: 6),
             SizedBox(height: 20),
