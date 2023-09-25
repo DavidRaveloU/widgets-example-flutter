@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:widgets_example/widgets/dropdown_select_menu.dart';
-import 'package:widgets_example/widgets/toast_notification.dart';
-
-import 'widgets/accordion_container.dart';
-import 'widgets/draggable_star_rating.dart';
-import 'widgets/otp_verfication.dart';
-
-import 'widgets/underlined_textfield.dart';
+import 'package:widgets_example/widgets/rating_component.dart';
 
 void main(List<String> args) {
   runApp(const App());
@@ -35,7 +28,15 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            DropdownSelectmenu(
+            RatingComponent(
+              onButtonSelected: (value) {
+                print(value);
+              },
+              voidCallback: () {
+                print('button used');
+              },
+            )
+            /*DropdownSelectmenu(
               options: [
                 OptionTap(
                     icon: const Icon(
@@ -58,7 +59,7 @@ class HomePage extends StatelessWidget {
                     }),
               ],
             ),
-            /*ToastNotification(
+            ToastNotification(
               message: 'Este es un texto',
               notificationType: NotificationType.info,
             )
